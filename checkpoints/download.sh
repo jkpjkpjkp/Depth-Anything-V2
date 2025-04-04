@@ -1,0 +1,1 @@
+curl -L -o depth_anything_v2_vitl.pth https://hf-mirror.com/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth

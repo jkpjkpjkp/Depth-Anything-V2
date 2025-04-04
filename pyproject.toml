@@ -8,6 +8,7 @@ dependencies = [
     "matplotlib>=3.10.1",
     "opencv-python>=4.11.0.86",
     "torch>=2.5.1",
+    "torchvision>=0.21.0",
 ]
 
 [tool.uv.sources]
@@ -17,3 +18,8 @@ torch = [
 torchvision = [
     { index = "pytorch-cu" },
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
