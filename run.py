@@ -9,10 +9,22 @@ import torch
 from depth_anything_v2.dpt import DepthAnythingV2
 
 
+def inspect_array(arr):
+    print('shape:', arr.shape)
+    print('min:', arr.min())
+    print('max:', arr.max())
+    print('dtype:', arr.dtype)
+    print('mean:', arr.mean())
+    print('std:', arr.std())
+    print('median:', np.median(arr))
+    print('percentile 10:', np.percentile(arr, 10))
+    print('percentile 90:', np.percentile(arr, 90))
+    print()
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Depth Anything V2')
     
-    parser.add_argument('--img-path', type=str)
+    parser.add_argument('--img-path', type=str, default='assets/examples/demo01.jpg')
     parser.add_argument('--input-size', type=int, default=518)
     parser.add_argument('--outdir', type=str, default='./vis_depth')
     
@@ -55,8 +67,10 @@ if __name__ == '__main__':
         raw_image = cv2.imread(filename)
         
         depth = depth_anything.infer_image(raw_image, args.input_size)
+        inspect_array(depth)
         
         depth = (depth - depth.min()) / (depth.max() - depth.min()) * 255.0
+        inspect_array(depth)
         depth = depth.astype(np.uint8)
         
         if args.grayscale:
